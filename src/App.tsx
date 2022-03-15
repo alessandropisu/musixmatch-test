@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import useLocalStorage from "@rehooks/local-storage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { USER_STORAGE } from "./utils";
+import Login from "./views/Login";
+import Quiz from "./views/Quiz";
 
 function App() {
+  const [userLogged] = useLocalStorage(USER_STORAGE);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {userLogged ? (
+        <>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Quiz />} />
+              <Route path="/user" element={<Quiz />} />
+              <Route path="/scoreboard" element={<Quiz />} />
+            </Routes>
+          </BrowserRouter>
+        </>
+      ) : (
+        <Login />
+      )}
+    </>
   );
 }
 
