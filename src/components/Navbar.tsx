@@ -35,19 +35,19 @@ function Navbar() {
 
   const routeButtons = [
     {
-      icon: <BsFillTrophyFill />,
-      label: "Show leaderboard",
+      icon: <FaUserAlt />,
+      label: "Show user history",
       as: Link,
-      to: "/leaderboard",
+      to: "/user",
       bg: colors.brandOrange,
       _hover: { bg: colors.brandOrange },
       _active: { bg: colors.brandOrange },
     },
     {
-      icon: <FaUserAlt />,
-      label: "Show user history",
+      icon: <BsFillTrophyFill />,
+      label: "Show leaderboard",
       as: Link,
-      to: "/user",
+      to: "/leaderboard",
       variant: "brand",
     },
     {

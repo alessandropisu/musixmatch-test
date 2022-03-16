@@ -147,7 +147,7 @@ function Quiz() {
                     height="50px"
                     mt={{ base: 4, md: 0 }}
                     onClick={() => handleArtistClick(artist)}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.07 }}
                   >
                     {artist}
                   </MotionButton>
