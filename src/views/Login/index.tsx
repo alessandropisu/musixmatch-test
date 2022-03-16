@@ -12,10 +12,12 @@ function Login() {
 
   return (
     <Flex alignItems="center" justifyContent="center" height="full">
-      <Box width="350px" mx="auto" px={4} py={3} shadow="lg" rounded="md">
-        <Flex justifyContent="center" alignItems="center" mb="4">
+      <Box width="400px" mx="auto" px={4} py={3} shadow="lg" rounded="md">
+        <Flex justifyContent="center" alignItems="center">
           <Image src="logo.png" h="80px" />
-          <Heading ml="4">Who Sings</Heading>
+          <Heading ml="4" size="2xl">
+            Who Sings
+          </Heading>
         </Flex>
 
         <Input
@@ -23,7 +25,7 @@ function Login() {
           onChange={(e) => setUsername(e.target.value)}
           variant="filled"
           placeholder="Username"
-          my="3"
+          my={6}
         />
 
         <Button isFullWidth isDisabled={!username} onClick={handleLogin}>

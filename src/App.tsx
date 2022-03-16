@@ -6,6 +6,7 @@ import Login from "./views/Login";
 import Quiz from "./views/Quiz";
 
 function App() {
+  // https://www.npmjs.com/package/@rehooks/local-storage
   const [userLogged] = useLocalStorage(USER_STORAGE);
 
   return (

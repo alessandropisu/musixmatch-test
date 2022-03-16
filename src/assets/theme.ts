@@ -10,12 +10,12 @@ const customTheme = extendTheme({
     Button: {
       variants: {
         brand: {
-          bgGradient: "linear(to-l, #FB157E,#FB6038)",
+          bgGradient: "linear(to-l, #ff6050,#ff0e83)",
           _hover: {
             _disabled: {
-              bgGradient: "linear(to-l, #FB157E,#FB6038)",
+              bgGradient: "linear(to-l, #ff6050,#ff0e83)",
             },
-            bgGradient: "linear(to-r, #FB157E,#FB6038)",
+            bgGradient: "linear(to-r, #ff6050,#ff0e83)",
           },
           color: "white",
         },

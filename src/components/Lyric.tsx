@@ -8,7 +8,7 @@ function Lyric({ value }: { value: string }) {
       borderWidth="5px"
       style={{
         borderImageSlice: 1,
-        borderImageSource: "linear-gradient(to left, #FB157E, #FB6038)",
+        borderImageSource: "linear-gradient(to left, #ff6050, #ff0e83)",
       }}
       textAlign="center"
     >

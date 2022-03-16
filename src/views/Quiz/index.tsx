@@ -14,6 +14,8 @@ import { getTracksApi, getTrackSnippetApi } from "../../services/track";
 import { useTimer } from "use-timer";
 import Result from "../../components/Result";
 import { motion } from "framer-motion";
+import useLocalStorage from "@rehooks/local-storage";
+import { USER_STORAGE } from "../../utils";
 
 const songsNumber = 4;
 const MotionButton = motion(Button);
@@ -29,6 +31,10 @@ function Quiz() {
   const [gameCompleted, setGameCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [songs, setSongs] = useState<Song[]>([]);
+
+  const [users, setUsers] = useLocalStorage<{
+    [user: string]: { history: number[]; best: number };
+  }>(`whosings.users`, {});
 
   const { time } = useTimer({
     initialTime: 10,
@@ -89,6 +95,34 @@ function Quiz() {
     }
 
     if (songIndex + 1 === songsNumber) {
+      // No need to track with useLocalStorage and cause extra re-render
+      const userLogged = localStorage.getItem(USER_STORAGE);
+
+      if (userLogged) {
+        const userInfo = users[userLogged];
+
+        if (!userInfo) {
+          setUsers({
+            ...users,
+            [userLogged]: {
+              history: [points],
+              best: points,
+            },
+          });
+        } else {
+          setUsers({
+            ...users,
+            [userLogged]: {
+              history: [points, ...users[userLogged].history],
+              best:
+                points > users[userLogged].best
+                  ? points
+                  : users[userLogged].best,
+            },
+          });
+        }
+      }
+
       setGameCompleted(true);
     } else {
       setSongIndex(songIndex + 1);
