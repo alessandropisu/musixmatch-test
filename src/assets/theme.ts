@@ -1,6 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
 
+const colors = {
+  brandOrange: "#ff6050",
+  brandPink: "#ff0e83",
+  brandDeepPink: "#ff236a",
+};
+
 const customTheme = extendTheme({
+  colors,
   components: {
     Heading: {
       baseStyle: {
@@ -10,12 +17,11 @@ const customTheme = extendTheme({
     Button: {
       variants: {
         brand: {
-          bgGradient: "linear(to-l, #ff6050,#ff0e83)",
+          bgGradient: `linear(to-r, ${colors.brandOrange},${colors.brandPink})`,
           _hover: {
             _disabled: {
-              bgGradient: "linear(to-l, #ff6050,#ff0e83)",
+              bgGradient: `linear(to-r, ${colors.brandOrange},${colors.brandPink})`,
             },
-            bgGradient: "linear(to-r, #ff6050,#ff0e83)",
           },
           color: "white",
         },

@@ -1,10 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  Container,
-  Flex,
-  Progress,
-} from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Progress } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import Lyric from "../../components/Lyric";
 import sample from "lodash.samplesize";
@@ -130,7 +124,7 @@ function Quiz() {
   }
 
   return (
-    <Container mt="120px" maxW="container.lg">
+    <>
       {loading ? (
         <Loader />
       ) : (
@@ -163,7 +157,7 @@ function Quiz() {
           )}
         </Flex>
       )}
-    </Container>
+    </>
   );
 }
 
