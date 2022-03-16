@@ -3,7 +3,8 @@ import { extendTheme } from "@chakra-ui/react";
 const colors = {
   brandOrange: "#ff6050",
   brandPink: "#ff0e83",
-  brandDeepPink: "#ff236a",
+  brandGradient: () =>
+    `linear-gradient(to right, ${colors.brandOrange},${colors.brandPink})`,
 };
 
 const customTheme = extendTheme({
@@ -17,10 +18,10 @@ const customTheme = extendTheme({
     Button: {
       variants: {
         brand: {
-          bgGradient: `linear(to-r, ${colors.brandOrange},${colors.brandPink})`,
+          bgGradient: colors.brandGradient,
           _hover: {
             _disabled: {
-              bgGradient: `linear(to-r, ${colors.brandOrange},${colors.brandPink})`,
+              bgGradient: colors.brandGradient,
             },
           },
           color: "white",

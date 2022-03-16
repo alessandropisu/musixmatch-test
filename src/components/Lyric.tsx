@@ -1,6 +1,8 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useTheme } from "@chakra-ui/react";
 
 function Lyric({ value }: { value: string }) {
+  const { colors } = useTheme();
+
   return (
     <Box
       p="20px"
@@ -8,7 +10,7 @@ function Lyric({ value }: { value: string }) {
       borderWidth="5px"
       style={{
         borderImageSlice: 1,
-        borderImageSource: "linear-gradient(to left, #ff6050, #ff0e83)",
+        borderImageSource: colors.brandGradient(),
       }}
       textAlign="center"
     >
