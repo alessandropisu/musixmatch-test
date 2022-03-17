@@ -22,7 +22,7 @@ function Leaderboard() {
     <>
       <Title>Leaderboard 🏅</Title>
 
-      <Box shadow="xl" rounded="xl" p={5}>
+      <Box shadow="xl" rounded="xl" padding={5}>
         <Table>
           <Thead>
             <Tr>
@@ -42,7 +42,7 @@ function Leaderboard() {
                 color={currentUser?.name === user.name ? "white" : "black"}
               >
                 <Td>{user.name}</Td>
-                <Td isNumeric fontWeight="700">
+                <Td isNumeric fontWeight={700}>
                   {user.best}
                 </Td>
               </Tr>

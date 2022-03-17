@@ -20,17 +20,22 @@ function Result({ points, onPlayAgain }: ResultProps) {
     <ScaleFade initialScale={0.9} in>
       <Title>Quiz result 🥁</Title>
 
-      <Box p="35px" rounded="xl" shadow="xl" textAlign="center">
-        <Text fontSize="3xl" fontWeight="500">
+      <Box padding={8} rounded="xl" shadow="xl" textAlign="center">
+        <Text fontSize="3xl" fontWeight={500}>
           {getResultLabel()}
         </Text>
 
-        <Text fontSize="2xl" fontWeight="700">
+        <Text fontSize="2xl" fontWeight={700}>
           {points}/{TRACKS_NUMBER}
         </Text>
 
-        <Button textAlign="center" size="lg" mt={6} onClick={onPlayAgain}>
-          Play again
+        <Button
+          textAlign="center"
+          size="lg"
+          marginTop={6}
+          onClick={onPlayAgain}
+        >
+          Play again!
         </Button>
       </Box>
     </ScaleFade>

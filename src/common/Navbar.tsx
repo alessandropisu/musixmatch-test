@@ -62,12 +62,12 @@ function Navbar() {
   ];
 
   return (
-    <Flex p="3">
+    <Flex padding={3}>
       <Flex alignItems="center">
         <Link to="/">
           <Image src="logo.png" height="30px" />
         </Link>
-        <Heading size="md" ml="2">
+        <Heading size="md" marginLeft={2}>
           Who Sings
         </Heading>
       </Flex>

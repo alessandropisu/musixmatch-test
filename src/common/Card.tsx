@@ -9,18 +9,18 @@ interface CardProps extends StatProps {
 function Card({ title, value, ...rest }: CardProps) {
   return (
     <Stat
-      px={{ base: 4, md: 8 }}
-      py={5}
+      paddingX={{ base: 4, md: 8 }}
+      paddingY={5}
       shadow="xl"
       border="3px solid"
       rounded="xl"
       textAlign="center"
       {...rest}
     >
-      <StatLabel fontWeight="500" fontSize="3xl">
+      <StatLabel fontWeight={500} fontSize="3xl">
         {title}
       </StatLabel>
-      <StatNumber fontWeight="700" fontSize="6xl">
+      <StatNumber fontWeight={700} fontSize="6xl">
         {value}
       </StatNumber>
     </Stat>

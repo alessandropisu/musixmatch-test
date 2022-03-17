@@ -11,7 +11,7 @@ const MotionButton = motion(Button);
 function Artists({ artists, onArtistClick }: ArtistsProps) {
   return (
     <ButtonGroup
-      mt="5"
+      marginTop={5}
       flexDirection={{ base: "column", md: "row" }}
       spacing={{ base: 0, md: 5 }}
       rounded="xl"
@@ -21,7 +21,7 @@ function Artists({ artists, onArtistClick }: ArtistsProps) {
           key={artist}
           isFullWidth
           height="50px"
-          mt={{ base: 4, md: 0 }}
+          marginTop={{ base: 4, md: 0 }}
           onClick={() => onArtistClick(artist)}
           whileHover={{ scale: 1.07 }}
         >

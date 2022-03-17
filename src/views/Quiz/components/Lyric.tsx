@@ -5,8 +5,7 @@ function Lyric({ value }: { value: string }) {
 
   return (
     <Box
-      p="20px"
-      border="5px solid"
+      p={5}
       borderWidth="5px"
       style={{
         borderImageSlice: 1,
@@ -14,7 +13,7 @@ function Lyric({ value }: { value: string }) {
       }}
       textAlign="center"
     >
-      <Text as="q" fontWeight="700" fontSize="2xl">
+      <Text as="q" fontWeight={700} fontSize="2xl">
         {value}
       </Text>
     </Box>

@@ -8,8 +8,8 @@ function Loader() {
         speed="0.75s"
         emptyColor="#FB157E"
         color="#FB6038"
-        w="110px"
-        h="110px"
+        width="110px"
+        height="110px"
       />
     </Center>
   );

@@ -7,7 +7,13 @@ interface TitleProps extends TextProps {
 
 function Title({ children, ...rest }: TitleProps) {
   return (
-    <Text textAlign="center" fontSize="4xl" fontWeight="bold" mb={8} {...rest}>
+    <Text
+      textAlign="center"
+      fontSize="4xl"
+      fontWeight="bold"
+      marginBottom={8}
+      {...rest}
+    >
       {children}
     </Text>
   );

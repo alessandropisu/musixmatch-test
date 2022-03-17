@@ -45,6 +45,7 @@ function Quiz() {
   const isGameCompleted = trackIndex === TRACKS_NUMBER;
 
   const artists = useMemo(() => {
+    // True only during quiz loading (loader spinner is displayed)
     if (!currentTrack) {
       return [];
     }
@@ -53,6 +54,7 @@ function Quiz() {
 
     payload = [
       ...payload,
+      // Retrieve two random artists excluding the real artist of the track
       ...sample(
         tracks
           .filter((track) => track.artist !== currentTrack.artist)
@@ -61,6 +63,7 @@ function Quiz() {
       ),
     ];
 
+    // Shuffling the order of artists to prevent have the right artist always at the same buttons position
     return shuffle(payload);
   }, [tracks, currentTrack]);
 
@@ -94,18 +97,15 @@ function Quiz() {
 
   useEffect(() => {
     if (isGameCompleted) {
+      // Save quiz result to store/localStorage
       addScore(points);
     }
   }, [isGameCompleted, points]);
 
   function handleArtistClick(artist: string) {
-    const newPoints = artist === currentTrack.artist ? points + 1 : points;
-
-    if (artist === currentTrack.artist) {
-      setPoints(newPoints);
-    }
-
+    setPoints(artist === currentTrack.artist ? points + 1 : points);
     setTrackIndex(trackIndex + 1);
+
     restartTimer();
   }
 

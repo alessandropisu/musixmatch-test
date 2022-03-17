@@ -24,7 +24,7 @@ const routes = [
 ];
 
 function App() {
-  const { userLogged, isAppReady, intializeFields } = useStore();
+  const { isAppReady, userLogged, intializeFields } = useStore();
 
   useEffect(() => {
     intializeFields();

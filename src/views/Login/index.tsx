@@ -13,10 +13,17 @@ function Login() {
 
   return (
     <Flex alignItems="center" justifyContent="center" height="full">
-      <Box width="400px" mx="auto" px={4} py={3} shadow="xl" rounded="xl">
+      <Box
+        width="400px"
+        mx="auto"
+        paddingX={4}
+        paddingY={3}
+        shadow="xl"
+        rounded="xl"
+      >
         <Flex justifyContent="center" alignItems="center">
-          <Image src="logo.png" h="80px" />
-          <Heading ml="4" size="2xl">
+          <Image src="logo.png" height="80px" />
+          <Heading marginLeft={4} size="2xl">
             Who Sings
           </Heading>
         </Flex>
@@ -26,7 +33,7 @@ function Login() {
           onChange={(e) => setUsername(e.target.value)}
           variant="filled"
           placeholder="Username"
-          my={6}
+          marginY={6}
         />
 
         <Button isFullWidth isDisabled={!username} onClick={handleLogin}>
