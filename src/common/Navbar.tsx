@@ -37,7 +37,7 @@ function Navbar() {
   const routeButtons = [
     {
       icon: <FaUserAlt />,
-      label: "Show user history",
+      label: "Show user info",
       as: Link,
       to: "/user",
       bg: colors.brandOrange,

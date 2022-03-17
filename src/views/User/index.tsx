@@ -1,4 +1,4 @@
-import { SimpleGrid, Text, useTheme } from "@chakra-ui/react";
+import { SimpleGrid, useTheme } from "@chakra-ui/react";
 import Card from "../../common/Card";
 import Title from "../../common/Title";
 import useStore from "../../store";
@@ -11,14 +11,14 @@ function User() {
 
   function getLastScores() {
     if (user) {
-      if (user.history.length === 0) {
+      if (user.scores.length === 0) {
         return "No scores found";
       }
 
       // Check if scores count is greater of 3 to prevent allocation of extra 0 values
-      const scoresCount = user.history.length >= 3 ? 3 : user.history.length;
+      const scoresCount = user.scores.length >= 3 ? 3 : user.scores.length;
 
-      return user.history.slice(0, scoresCount).toString();
+      return user.scores.slice(0, scoresCount).toString();
     }
   }
 
@@ -35,7 +35,7 @@ function User() {
           >
             <Card
               title="Game played"
-              value={user.history.length}
+              value={user.scores.length}
               borderColor={colors.brandOrange}
               color={colors.brandOrange}
             />

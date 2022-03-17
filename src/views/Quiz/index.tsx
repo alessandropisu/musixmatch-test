@@ -9,18 +9,18 @@ import { useTimer } from "use-timer";
 import Result from "./components/Result";
 import useStore from "../../store";
 import Artists from "./components/Artists";
-import { SONGS_NUMBER } from "../../constants";
+import { TRACKS_NUMBER } from "../../constants";
 
-interface Song {
+interface Track {
   artist: string;
   snippet: string;
 }
 
 function Quiz() {
   const [points, setPoints] = useState(0);
-  const [songIndex, setSongIndex] = useState(0);
+  const [trackIndex, setTrackIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [tracks, setTracks] = useState<Track[]>([]);
 
   const addScore = useStore((state) => state.addScore);
 
@@ -30,7 +30,7 @@ function Quiz() {
     timerType: "DECREMENTAL",
     onTimeOver: () => {
       if (isGameCompleted) return;
-      setSongIndex(songIndex + 1);
+      setTrackIndex(trackIndex + 1);
 
       restartTimer();
     },
@@ -41,50 +41,51 @@ function Quiz() {
     start();
   }
 
-  const currentSong = songs[songIndex];
-  const isGameCompleted = songIndex === SONGS_NUMBER;
+  const currentTrack = tracks[trackIndex];
+  const isGameCompleted = trackIndex === TRACKS_NUMBER;
 
   const artists = useMemo(() => {
-    if (!currentSong) {
+    if (!currentTrack) {
       return [];
     }
 
-    let payload = [currentSong.artist];
+    let payload = [currentTrack.artist];
 
     payload = [
       ...payload,
       ...sample(
-        songs
-          .filter((track) => track.artist !== currentSong.artist)
+        tracks
+          .filter((track) => track.artist !== currentTrack.artist)
           .map((track) => track.artist),
         2
       ),
     ];
 
     return shuffle(payload);
-  }, [songs, currentSong]);
+  }, [tracks, currentTrack]);
 
   useEffect(() => {
-    getTracksApi(SONGS_NUMBER).then(async ({ data }) => {
+    getTracksApi(TRACKS_NUMBER).then(async ({ data }) => {
       const trackList = data.message.body.track_list;
 
-      const songs: Song[] = [];
+      const tracks: Track[] = [];
 
-      for (let i = 0; i < SONGS_NUMBER; i++) {
+      for (let i = 0; i < TRACKS_NUMBER; i++) {
         const trackId = trackList[i].track.track_id;
         const trackArtist = trackList[i].track.artist_name;
 
+        // Retrieve snippet for every track
         const { data } = await getTrackSnippetApi(trackId);
 
         const snippet = data.message.body.snippet.snippet_body;
 
-        songs.push({
+        tracks.push({
           artist: trackArtist,
           snippet,
         });
       }
 
-      setSongs(songs);
+      setTracks(tracks);
       setLoading(false);
 
       start();
@@ -98,18 +99,18 @@ function Quiz() {
   }, [isGameCompleted, points]);
 
   function handleArtistClick(artist: string) {
-    const newPoints = artist === currentSong.artist ? points + 1 : points;
+    const newPoints = artist === currentTrack.artist ? points + 1 : points;
 
-    if (artist === currentSong.artist) {
+    if (artist === currentTrack.artist) {
       setPoints(newPoints);
     }
 
-    setSongIndex(songIndex + 1);
+    setTrackIndex(trackIndex + 1);
     restartTimer();
   }
 
   function handlePlayAgain() {
-    setSongIndex(0);
+    setTrackIndex(0);
     setPoints(0);
 
     restartTimer();
@@ -125,7 +126,7 @@ function Quiz() {
             <Result points={points} onPlayAgain={handlePlayAgain} />
           ) : (
             <>
-              <Lyric value={currentSong.snippet} />
+              <Lyric value={currentTrack.snippet} />
               <Progress
                 size="sm"
                 min={0}

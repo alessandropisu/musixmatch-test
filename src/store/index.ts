@@ -4,7 +4,7 @@ import { USERS_LIST_STORAGE, USER_STORAGE } from "../constants";
 
 interface User {
   name: string;
-  history: number[];
+  scores: number[];
   best: number;
 }
 
@@ -42,7 +42,7 @@ const useStore = create<StoreState>((set, get) => ({
     set((state) => ({ ...state, userLogged: username }));
 
     if (!hasUserAlreadyPlayed) {
-      const newUsers = [...users, { name: username, history: [], best: 0 }];
+      const newUsers = [...users, { name: username, scores: [], best: 0 }];
 
       set((state) => ({
         ...state,
@@ -68,7 +68,7 @@ const useStore = create<StoreState>((set, get) => ({
 
       const payload = {
         ...users[userIndex],
-        history: [score, ...users[userIndex].history],
+        scores: [score, ...users[userIndex].scores],
         best: score > users[userIndex].best ? score : users[userIndex].best,
       };
 

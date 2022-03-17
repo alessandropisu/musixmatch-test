@@ -1,6 +1,6 @@
 import { ScaleFade, Box, Text, Button } from "@chakra-ui/react";
 import Title from "../../../common/Title";
-import { SONGS_NUMBER } from "../../../constants";
+import { TRACKS_NUMBER } from "../../../constants";
 
 interface ResultProps {
   points: number;
@@ -26,7 +26,7 @@ function Result({ points, onPlayAgain }: ResultProps) {
         </Text>
 
         <Text fontSize="2xl" fontWeight="700">
-          {points}/{SONGS_NUMBER}
+          {points}/{TRACKS_NUMBER}
         </Text>
 
         <Button textAlign="center" size="lg" mt={6} onClick={onPlayAgain}>
