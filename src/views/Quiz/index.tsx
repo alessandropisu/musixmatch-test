@@ -97,7 +97,7 @@ function Quiz() {
 
   useEffect(() => {
     if (isGameCompleted) {
-      // Save quiz result to store/localStorage
+      // Save quiz score to store and localStorage
       addScore(points);
     }
   }, [isGameCompleted, points]);
