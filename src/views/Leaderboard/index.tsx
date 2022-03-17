@@ -8,9 +8,9 @@ import {
   Box,
   useTheme,
 } from "@chakra-ui/react";
-import Title from "../../common/Title";
-import useStore from "../../store";
-import { sortedUsersSelector, userInfoSelector } from "../../store/selectors";
+import Title from "common/Title";
+import useStore from "store";
+import { sortedUsersSelector, userInfoSelector } from "store/selectors";
 
 function Leaderboard() {
   const { colors } = useTheme();

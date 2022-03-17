@@ -1,5 +1,5 @@
 import { ScaleFade, Box, Text, Button } from "@chakra-ui/react";
-import Title from "../../../common/Title";
+import Title from "common/Title";
 import { TRACKS_NUMBER } from "../../../constants";
 
 interface ResultProps {

@@ -3,11 +3,11 @@ import { useEffect, useMemo, useState } from "react";
 import Lyric from "./components/Lyric";
 import sample from "lodash.samplesize";
 import shuffle from "lodash.shuffle";
-import Loader from "../../common/Loader";
-import { getTracksApi, getTrackSnippetApi } from "../../services/track";
+import Loader from "common/Loader";
+import { getTracksApi, getTrackSnippetApi } from "services/track";
 import { useTimer } from "use-timer";
 import Result from "./components/Result";
-import useStore from "../../store";
+import useStore from "store";
 import Artists from "./components/Artists";
 import { TRACKS_NUMBER } from "../../constants";
 

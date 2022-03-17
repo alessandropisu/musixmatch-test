@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Input } from "@chakra-ui/react";
 import { useState } from "react";
-import useStore from "../../store";
+import useStore from "store";
 
 function Login() {
   const [username, setUsername] = useState("");

@@ -1,8 +1,8 @@
 import { SimpleGrid, useTheme } from "@chakra-ui/react";
-import Card from "../../common/Card";
-import Title from "../../common/Title";
-import useStore from "../../store";
-import { userInfoSelector } from "../../store/selectors";
+import Card from "common/Card";
+import Title from "common/Title";
+import useStore from "store";
+import { userInfoSelector } from "store/selectors";
 
 function User() {
   const user = useStore(userInfoSelector);

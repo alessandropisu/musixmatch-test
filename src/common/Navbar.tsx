@@ -14,7 +14,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { CgLogOut } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { ReactElement } from "react";
-import useStore from "../store";
+import useStore from "store";
 
 interface NavButtonProps extends IconButtonProps {
   label: string;
@@ -67,7 +67,7 @@ function Navbar() {
         <Link to="/">
           <Image src="logo.png" height="30px" />
         </Link>
-        <Heading size="md" marginLeft={2}>
+        <Heading size="lg" marginLeft={2}>
           Who Sings
         </Heading>
       </Flex>
