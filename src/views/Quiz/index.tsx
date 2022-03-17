@@ -21,19 +21,25 @@ interface Song {
 function Quiz() {
   const [points, setPoints] = useState(0);
   const [songIndex, setSongIndex] = useState(0);
-  const [gameCompleted, setGameCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [songs, setSongs] = useState<Song[]>([]);
 
   const addScore = useStore((state) => state.addScore);
 
-  const { time } = useTimer({
-    initialTime: 10,
+  const { time, start, reset } = useTimer({
+    initialTime: 5,
     endTime: 0,
     timerType: "DECREMENTAL",
+    onTimeOver: () => {
+      setSongIndex(songIndex + 1);
+
+      reset();
+      start();
+    },
   });
 
   const currentSong = songs[songIndex];
+  const isGameCompleted = songIndex === songsNumber;
 
   const artists = useMemo(() => {
     if (!currentSong) {
@@ -77,21 +83,28 @@ function Quiz() {
 
       setSongs(songs);
       setLoading(false);
+
+      start();
     });
   }, []);
 
-  function handleArtistClick(artist: string) {
-    if (artist === currentSong.artist) {
-      setPoints(points + 1);
-    }
-
-    if (songIndex + 1 === songsNumber) {
+  useEffect(() => {
+    if (isGameCompleted) {
       addScore(points);
-
-      setGameCompleted(true);
-    } else {
-      setSongIndex(songIndex + 1);
     }
+  }, [isGameCompleted, points]);
+
+  function handleArtistClick(artist: string) {
+    const newPoints = artist === currentSong.artist ? points + 1 : points;
+
+    if (artist === currentSong.artist) {
+      setPoints(newPoints);
+    }
+
+    setSongIndex(songIndex + 1);
+
+    reset();
+    start();
   }
 
   return (
@@ -100,12 +113,12 @@ function Quiz() {
         <Loader />
       ) : (
         <Flex flexDirection="column">
-          {gameCompleted ? (
+          {isGameCompleted ? (
             <Result points={points} />
           ) : (
             <>
               <Lyric value={currentSong.snippet} />
-              <Progress size="sm" min={0} max={10} value={time} />
+              <Progress size="sm" min={0} max={5} value={time} />
               <ButtonGroup
                 mt="5"
                 flexDirection={{ base: "column", md: "row" }}
