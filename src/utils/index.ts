@@ -1,4 +1,4 @@
-const USER_STORAGE = "whosings.user";
-const USERS_STAT_STORAGE = "whosings.users_stat";
+const USER_STORAGE = "whosings.current_user";
+const USERS_LIST_STORAGE = "whosings.users";
 
-export { USER_STORAGE, USERS_STAT_STORAGE };
+export { USER_STORAGE, USERS_LIST_STORAGE };

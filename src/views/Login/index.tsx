@@ -1,13 +1,14 @@
 import { Box, Button, Flex, Heading, Image, Input } from "@chakra-ui/react";
-import { writeStorage } from "@rehooks/local-storage";
 import { useState } from "react";
-import { USER_STORAGE } from "../../utils";
+import useStore from "../../store";
 
 function Login() {
   const [username, setUsername] = useState("");
 
+  const login = useStore((store) => store.login);
+
   function handleLogin() {
-    writeStorage(USER_STORAGE, username);
+    login(username);
   }
 
   return (

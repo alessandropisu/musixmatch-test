@@ -9,13 +9,12 @@ import {
   useTheme,
   IconButtonProps,
 } from "@chakra-ui/react";
-import { deleteFromStorage } from "@rehooks/local-storage";
-import { USER_STORAGE } from "../utils";
 import { BsFillTrophyFill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { CgLogOut } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { ReactElement } from "react";
+import useStore from "../store";
 
 interface NavButtonProps extends IconButtonProps {
   label: string;
@@ -31,6 +30,8 @@ function NavButton({ label, icon, ...rest }: NavButtonProps) {
 }
 
 function Navbar() {
+  const logout = useStore((state) => state.logout);
+
   const { colors } = useTheme();
 
   const routeButtons = [
@@ -53,16 +54,12 @@ function Navbar() {
     {
       icon: <CgLogOut />,
       label: "Logout",
-      onClick: () => handleLogout(),
+      onClick: () => logout(),
       bg: colors.brandPink,
       _hover: { bg: colors.brandPink },
       _active: { bg: colors.brandPink },
     },
   ];
-
-  function handleLogout() {
-    deleteFromStorage(USER_STORAGE);
-  }
 
   return (
     <Flex p="3">

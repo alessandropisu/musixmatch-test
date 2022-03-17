@@ -1,8 +1,8 @@
 import { Container } from "@chakra-ui/react";
-import useLocalStorage from "@rehooks/local-storage";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { USER_STORAGE } from "./utils";
+import useStore from "./store";
 import Leaderboard from "./views/Leaderboard";
 import Login from "./views/Login";
 import Quiz from "./views/Quiz";
@@ -24,8 +24,11 @@ const routes = [
 ];
 
 function App() {
-  // https://www.npmjs.com/package/@rehooks/local-storage
-  const [userLogged] = useLocalStorage(USER_STORAGE);
+  const { userLogged, intializeFields } = useStore();
+
+  useEffect(() => {
+    intializeFields();
+  }, []);
 
   return (
     <>

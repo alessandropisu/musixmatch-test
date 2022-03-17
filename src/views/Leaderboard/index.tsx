@@ -1,27 +1,9 @@
-import {
-  Table,
-  TableCaption,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  Tfoot,
-  Box,
-} from "@chakra-ui/react";
-import useLocalStorage from "@rehooks/local-storage";
-import { useEffect, useMemo } from "react";
+import { Table, Thead, Tr, Th, Tbody, Td, Box } from "@chakra-ui/react";
+import useStore from "../../store";
+import { sortedUsersSelector } from "../../store/selectors";
 
 function Leaderboard() {
-  const [users] = useLocalStorage<{
-    [user: string]: { history: number[]; best: number };
-  }>(`whosings.users`, {});
-
-  const sortedUsers =
-    users &&
-    Object.fromEntries(
-      Object.entries(users).sort(([, a], [, b]) => a.best - b.best)
-    );
+  const sortedUsers = useStore(sortedUsersSelector);
 
   return (
     <Box rounded="lg" border="3px solid #ff6050" p={1}>
@@ -33,20 +15,12 @@ function Leaderboard() {
           </Tr>
         </Thead>
         <Tbody>
-          {Object.entries(sortedUsers).map(([user, value]) => (
-            <Tr key={user}>
-              <Td>{user}</Td>
-              <Td isNumeric>{value.best}</Td>
+          {sortedUsers.map((user) => (
+            <Tr key={user.name}>
+              <Td>{user.name}</Td>
+              <Td isNumeric>{user.best}</Td>
             </Tr>
           ))}
-
-          {Object.keys(sortedUsers).length === 0 && (
-            <Tr>
-              <Td colSpan={2} textAlign="center">
-                No results
-              </Td>
-            </Tr>
-          )}
         </Tbody>
       </Table>
     </Box>
