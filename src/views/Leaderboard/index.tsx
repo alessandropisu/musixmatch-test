@@ -7,7 +7,9 @@ import {
   Td,
   Box,
   useTheme,
+  Text,
 } from "@chakra-ui/react";
+import Title from "../../common/Title";
 import useStore from "../../store";
 import { sortedUsersSelector, userInfoSelector } from "../../store/selectors";
 
@@ -18,33 +20,38 @@ function Leaderboard() {
   const sortedUsers = useStore(sortedUsersSelector);
 
   return (
-    <Box rounded="md" borderWidth="3px" borderColor={colors.brandOrange} p={1}>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th isNumeric>Best score</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {sortedUsers.map((user) => (
-            <Tr
-              key={user.name}
-              backgroundColor={
-                currentUser?.name === user.name
-                  ? "rgba(255, 14, 131, 0.2)"
-                  : "transparent"
-              }
-            >
-              <Td>{user.name}</Td>
-              <Td isNumeric fontWeight="700">
-                {user.best}
-              </Td>
+    <>
+      <Title>Leaderboard 🏅</Title>
+
+      <Box shadow="2xl" rounded="xl" p={5}>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th isNumeric>Best score</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </Box>
+          </Thead>
+          <Tbody>
+            {sortedUsers.map((user) => (
+              <Tr
+                key={user.name}
+                bgGradient={
+                  currentUser?.name === user.name
+                    ? colors.brandGradient
+                    : "transparent"
+                }
+                color={currentUser?.name === user.name ? "white" : "black"}
+              >
+                <Td>{user.name}</Td>
+                <Td isNumeric fontWeight="700">
+                  {user.best}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
+    </>
   );
 }
 

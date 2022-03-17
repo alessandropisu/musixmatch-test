@@ -1,5 +1,6 @@
 import { SimpleGrid, Text, useTheme } from "@chakra-ui/react";
-import Card from "../../components/Card";
+import Card from "../../common/Card";
+import Title from "../../common/Title";
 import useStore from "../../store";
 import { userInfoSelector } from "../../store/selectors";
 
@@ -8,14 +9,30 @@ function User() {
 
   const { colors } = useTheme();
 
+  function getLastScores() {
+    if (user) {
+      if (user.history.length === 0) {
+        return "No scores found";
+      }
+
+      // Check if scores count is greater of 3 to prevent allocation of extra 0 values
+      const scoresCount = user.history.length >= 3 ? 3 : user.history.length;
+
+      return user.history.slice(0, scoresCount).toString();
+    }
+  }
+
   return (
     <>
       {user && (
         <>
-          <Text textAlign="center" fontSize="4xl" mb={10} fontWeight={"bold"}>
-            Hello {user.name} 👋
-          </Text>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
+          <Title> Hello {user.name} 👋</Title>
+
+          <SimpleGrid
+            columns={{ base: 1, md: 2 }}
+            spacing={{ base: 5, lg: 8 }}
+            mb={5}
+          >
             <Card
               title="Game played"
               value={user.history.length}
@@ -29,6 +46,14 @@ function User() {
               color={colors.brandPink}
             />
           </SimpleGrid>
+
+          <Card
+            title="Your last 3 quiz scores"
+            value={getLastScores()}
+            bgGradient={colors.brandGradient}
+            bgClip="text"
+            shadow="2xl"
+          />
         </>
       )}
     </>

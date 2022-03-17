@@ -1,7 +1,7 @@
 import { Container } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./common/Navbar";
 import useStore from "./store";
 import Leaderboard from "./views/Leaderboard";
 import Login from "./views/Login";
@@ -24,7 +24,7 @@ const routes = [
 ];
 
 function App() {
-  const { userLogged, intializeFields } = useStore();
+  const { userLogged, isAppReady, intializeFields } = useStore();
 
   useEffect(() => {
     intializeFields();
@@ -32,25 +32,29 @@ function App() {
 
   return (
     <>
-      {userLogged ? (
+      {isAppReady && (
         <>
-          <BrowserRouter>
-            <Navbar />
-            <Container mt="120px" maxW="container.lg">
-              <Routes>
-                {routes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={route.element}
-                  />
-                ))}
-              </Routes>
-            </Container>
-          </BrowserRouter>
+          {userLogged ? (
+            <>
+              <BrowserRouter>
+                <Navbar />
+                <Container mt="120px" maxW="container.lg">
+                  <Routes>
+                    {routes.map((route) => (
+                      <Route
+                        key={route.path}
+                        path={route.path}
+                        element={route.element}
+                      />
+                    ))}
+                  </Routes>
+                </Container>
+              </BrowserRouter>
+            </>
+          ) : (
+            <Login />
+          )}
         </>
-      ) : (
-        <Login />
       )}
     </>
   );

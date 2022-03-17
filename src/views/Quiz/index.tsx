@@ -1,17 +1,15 @@
-import { Button, ButtonGroup, Flex, Progress } from "@chakra-ui/react";
+import { Flex, Progress, useTheme } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
-import Lyric from "../../components/Lyric";
+import Lyric from "./components/Lyric";
 import sample from "lodash.samplesize";
 import shuffle from "lodash.shuffle";
-import Loader from "../../components/Loader";
+import Loader from "../../common/Loader";
 import { getTracksApi, getTrackSnippetApi } from "../../services/track";
 import { useTimer } from "use-timer";
-import Result from "../../components/Result";
-import { motion } from "framer-motion";
+import Result from "./components/Result";
 import useStore from "../../store";
-
-const songsNumber = 4;
-const MotionButton = motion(Button);
+import Artists from "./components/Artists";
+import { SONGS_NUMBER } from "../../constants";
 
 interface Song {
   artist: string;
@@ -26,11 +24,14 @@ function Quiz() {
 
   const addScore = useStore((state) => state.addScore);
 
+  const { colors } = useTheme();
+
   const { time, start, reset } = useTimer({
     initialTime: 5,
     endTime: 0,
     timerType: "DECREMENTAL",
     onTimeOver: () => {
+      if (isGameCompleted) return;
       setSongIndex(songIndex + 1);
 
       reset();
@@ -39,7 +40,7 @@ function Quiz() {
   });
 
   const currentSong = songs[songIndex];
-  const isGameCompleted = songIndex === songsNumber;
+  const isGameCompleted = songIndex === SONGS_NUMBER;
 
   const artists = useMemo(() => {
     if (!currentSong) {
@@ -62,12 +63,12 @@ function Quiz() {
   }, [songs, currentSong]);
 
   useEffect(() => {
-    getTracksApi(songsNumber).then(async ({ data }) => {
+    getTracksApi(SONGS_NUMBER).then(async ({ data }) => {
       const trackList = data.message.body.track_list;
 
       const songs: Song[] = [];
 
-      for (let i = 0; i < songsNumber; i++) {
+      for (let i = 0; i < SONGS_NUMBER; i++) {
         const trackId = trackList[i].track.track_id;
         const trackArtist = trackList[i].track.artist_name;
 
@@ -118,25 +119,14 @@ function Quiz() {
           ) : (
             <>
               <Lyric value={currentSong.snippet} />
-              <Progress size="sm" min={0} max={5} value={time} />
-              <ButtonGroup
-                mt="5"
-                flexDirection={{ base: "column", md: "row" }}
-                spacing={{ base: 0, md: 5 }}
-              >
-                {artists.map((artist) => (
-                  <MotionButton
-                    key={artist}
-                    isFullWidth
-                    height="50px"
-                    mt={{ base: 4, md: 0 }}
-                    onClick={() => handleArtistClick(artist)}
-                    whileHover={{ scale: 1.07 }}
-                  >
-                    {artist}
-                  </MotionButton>
-                ))}
-              </ButtonGroup>
+              <Progress
+                size="sm"
+                min={0}
+                max={5}
+                value={time}
+                colorScheme="cyan"
+              />
+              <Artists artists={artists} onArtistClick={handleArtistClick} />
             </>
           )}
         </Flex>

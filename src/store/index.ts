@@ -1,6 +1,6 @@
 import create from "zustand";
-import { USERS_LIST_STORAGE, USER_STORAGE } from "../utils";
 import localforage from "localforage";
+import { USERS_LIST_STORAGE, USER_STORAGE } from "../constants";
 
 interface User {
   name: string;
@@ -9,6 +9,7 @@ interface User {
 }
 
 export interface StoreState {
+  isAppReady: boolean;
   userLogged: string | null;
   users: User[];
   login: (username: string) => void;
@@ -18,6 +19,7 @@ export interface StoreState {
 }
 
 const useStore = create<StoreState>((set, get) => ({
+  isAppReady: false,
   userLogged: null,
   users: [],
   intializeFields: async () => {
@@ -28,6 +30,7 @@ const useStore = create<StoreState>((set, get) => ({
       ...state,
       userLogged,
       users,
+      isAppReady: true,
     }));
   },
   login: (username) => {
