@@ -14,6 +14,7 @@ function Artists({ artists, onArtistClick }: ArtistsProps) {
       mt="5"
       flexDirection={{ base: "column", md: "row" }}
       spacing={{ base: 0, md: 5 }}
+      rounded="xl"
     >
       {artists.map((artist) => (
         <MotionButton

@@ -1,8 +1,13 @@
-import { ScaleFade, Box, Text } from "@chakra-ui/react";
+import { ScaleFade, Box, Text, Button } from "@chakra-ui/react";
 import Title from "../../../common/Title";
 import { SONGS_NUMBER } from "../../../constants";
 
-function Result({ points }: { points: number }) {
+interface ResultProps {
+  points: number;
+  onPlayAgain: () => void;
+}
+
+function Result({ points, onPlayAgain }: ResultProps) {
   function getResultLabel() {
     if (points === 0) {
       return "Soooo bad";
@@ -15,7 +20,7 @@ function Result({ points }: { points: number }) {
     <ScaleFade initialScale={0.9} in>
       <Title>Quiz result 🥁</Title>
 
-      <Box p="40px" mt="4" rounded="lg" shadow="xl" textAlign="center">
+      <Box p="35px" rounded="xl" shadow="xl" textAlign="center">
         <Text fontSize="3xl" fontWeight="500">
           {getResultLabel()}
         </Text>
@@ -23,6 +28,10 @@ function Result({ points }: { points: number }) {
         <Text fontSize="2xl" fontWeight="700">
           {points}/{SONGS_NUMBER}
         </Text>
+
+        <Button textAlign="center" size="lg" mt={6} onClick={onPlayAgain}>
+          Play again
+        </Button>
       </Box>
     </ScaleFade>
   );

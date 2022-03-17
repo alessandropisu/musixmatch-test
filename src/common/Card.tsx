@@ -13,7 +13,7 @@ function Card({ title, value, ...rest }: CardProps) {
       py={5}
       shadow="xl"
       border="3px solid"
-      rounded="lg"
+      rounded="xl"
       textAlign="center"
       {...rest}
     >

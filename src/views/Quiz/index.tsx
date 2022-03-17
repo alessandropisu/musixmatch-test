@@ -1,4 +1,4 @@
-import { Flex, Progress, useTheme } from "@chakra-ui/react";
+import { Flex, Progress } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import Lyric from "./components/Lyric";
 import sample from "lodash.samplesize";
@@ -24,8 +24,6 @@ function Quiz() {
 
   const addScore = useStore((state) => state.addScore);
 
-  const { colors } = useTheme();
-
   const { time, start, reset } = useTimer({
     initialTime: 5,
     endTime: 0,
@@ -34,10 +32,14 @@ function Quiz() {
       if (isGameCompleted) return;
       setSongIndex(songIndex + 1);
 
-      reset();
-      start();
+      restartTimer();
     },
   });
+
+  function restartTimer() {
+    reset();
+    start();
+  }
 
   const currentSong = songs[songIndex];
   const isGameCompleted = songIndex === SONGS_NUMBER;
@@ -103,9 +105,14 @@ function Quiz() {
     }
 
     setSongIndex(songIndex + 1);
+    restartTimer();
+  }
 
-    reset();
-    start();
+  function handlePlayAgain() {
+    setSongIndex(0);
+    setPoints(0);
+
+    restartTimer();
   }
 
   return (
@@ -115,7 +122,7 @@ function Quiz() {
       ) : (
         <Flex flexDirection="column">
           {isGameCompleted ? (
-            <Result points={points} />
+            <Result points={points} onPlayAgain={handlePlayAgain} />
           ) : (
             <>
               <Lyric value={currentSong.snippet} />

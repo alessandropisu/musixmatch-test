@@ -38,7 +38,10 @@ function App() {
             <>
               <BrowserRouter>
                 <Navbar />
-                <Container mt="120px" maxW="container.lg">
+                <Container
+                  mt={{ base: "90px", md: "140px" }}
+                  maxW="container.lg"
+                >
                   <Routes>
                     {routes.map((route) => (
                       <Route
