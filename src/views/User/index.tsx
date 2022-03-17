@@ -52,7 +52,7 @@ function User() {
             value={getLastScores()}
             bgGradient={colors.brandGradient}
             bgClip="text"
-            shadow="2xl"
+            shadow="xl"
           />
         </>
       )}

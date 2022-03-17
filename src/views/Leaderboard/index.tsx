@@ -7,7 +7,6 @@ import {
   Td,
   Box,
   useTheme,
-  Text,
 } from "@chakra-ui/react";
 import Title from "../../common/Title";
 import useStore from "../../store";
@@ -23,7 +22,7 @@ function Leaderboard() {
     <>
       <Title>Leaderboard 🏅</Title>
 
-      <Box shadow="2xl" rounded="xl" p={5}>
+      <Box shadow="xl" rounded="xl" p={5}>
         <Table>
           <Thead>
             <Tr>

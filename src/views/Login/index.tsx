@@ -13,7 +13,7 @@ function Login() {
 
   return (
     <Flex alignItems="center" justifyContent="center" height="full">
-      <Box width="400px" mx="auto" px={4} py={3} shadow="lg" rounded="md">
+      <Box width="400px" mx="auto" px={4} py={3} shadow="xl" rounded="md">
         <Flex justifyContent="center" alignItems="center">
           <Image src="logo.png" h="80px" />
           <Heading ml="4" size="2xl">
