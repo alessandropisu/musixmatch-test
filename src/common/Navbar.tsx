@@ -72,7 +72,6 @@ function Navbar() {
           </Heading>
         </Flex>
       </Link>
-
       <Spacer />
       <ButtonGroup>
         {routeButtons.map(({ label, icon, ...rest }) => (

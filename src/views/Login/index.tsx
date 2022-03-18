@@ -15,7 +15,7 @@ function Login() {
     <Flex alignItems="center" justifyContent="center" height="full">
       <Box
         width="400px"
-        mx="auto"
+        marginX="auto"
         paddingX={4}
         paddingY={3}
         shadow="2xl"

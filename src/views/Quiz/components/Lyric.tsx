@@ -5,7 +5,7 @@ function Lyric({ value }: { value: string }) {
 
   return (
     <Box
-      p={5}
+      padding={5}
       borderWidth="5px"
       style={{
         borderImageSlice: 1,

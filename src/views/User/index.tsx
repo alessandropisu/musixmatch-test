@@ -15,7 +15,7 @@ function User() {
         return "No scores found";
       }
 
-      // Check if scores count is greater of 3 to prevent allocation of extra 0 values
+      // Check if scores count is greater than 3 to avoid allocation of extra 0 values
       const scoresCount = user.scores.length >= 3 ? 3 : user.scores.length;
 
       return user.scores.slice(0, scoresCount).toString();
@@ -31,7 +31,7 @@ function User() {
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
             spacing={{ base: 5, md: 10 }}
-            mb={{ base: 5, md: 10 }}
+            marginBottom={{ base: 5, md: 10 }}
           >
             <Card
               title="Game played"

@@ -40,7 +40,7 @@ function App() {
                 <Navbar />
                 <Container
                   marginTop={{ base: "90px", md: "140px" }}
-                  maxW="container.lg"
+                  maxWidth="container.lg"
                 >
                   <Routes>
                     {routes.map((route) => (
