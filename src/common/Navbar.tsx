@@ -53,7 +53,7 @@ function Navbar() {
     },
     {
       icon: <CgLogOut />,
-      label: "Logout",
+      label: "Log Out",
       onClick: () => logout(),
       bg: colors.brandPink,
       _hover: { bg: colors.brandPink },

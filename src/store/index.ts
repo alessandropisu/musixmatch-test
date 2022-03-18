@@ -38,9 +38,9 @@ const useStore = create<StoreState>((set, get) => ({
     localforage.setItem(USER_STORAGE, username);
   },
   logout: () => {
-    localforage.removeItem(USER_STORAGE);
-
     set((state) => ({ ...state, userLogged: null }));
+
+    localforage.removeItem(USER_STORAGE);
   },
   addScore: (score: number) => {
     const userLogged = get().userLogged;

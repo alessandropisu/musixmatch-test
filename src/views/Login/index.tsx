@@ -37,7 +37,7 @@ function Login() {
         />
 
         <Button isFullWidth isDisabled={!username.trim()} onClick={handleLogin}>
-          Enter
+          Log In
         </Button>
       </Box>
     </Flex>
