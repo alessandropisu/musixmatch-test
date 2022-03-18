@@ -1,22 +1,7 @@
 import create from "zustand";
 import localforage from "localforage";
 import { USERS_LIST_STORAGE, USER_STORAGE } from "../constants";
-
-interface User {
-  name: string;
-  scores: number[];
-  best: number;
-}
-
-export interface StoreState {
-  isAppReady: boolean;
-  userLogged: string | null;
-  users: User[];
-  login: (username: string) => void;
-  logout: () => void;
-  addScore: (score: number) => void;
-  intializeFields: () => void;
-}
+import { StoreState, User } from "./types";
 
 const useStore = create<StoreState>((set, get) => ({
   isAppReady: false,

@@ -1,4 +1,4 @@
-import { StoreState } from "./index";
+import { StoreState } from "./types";
 
 const userInfoSelector = (store: StoreState) =>
   store.users.find((user) => user.name === store.userLogged);
