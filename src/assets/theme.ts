@@ -8,6 +8,10 @@ const colors = {
 };
 
 const customTheme = extendTheme({
+  config: {
+    initialColorMode: "light",
+    useSystemColorMode: false,
+  },
   colors,
   components: {
     Heading: {

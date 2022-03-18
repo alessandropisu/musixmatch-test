@@ -16,9 +16,10 @@ function Artists({ artists, onArtistClick }: ArtistsProps) {
       spacing={{ base: 0, md: 5 }}
       rounded="xl"
     >
-      {artists.map((artist) => (
+      {artists.map((artist, i) => (
         <MotionButton
-          key={artist}
+          // Using index as key to mantain 'scale' effect on artists change on hovered button
+          key={i}
           isFullWidth
           height="50px"
           marginTop={{ base: 4, md: 0 }}

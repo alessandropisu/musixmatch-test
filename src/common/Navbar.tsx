@@ -63,14 +63,16 @@ function Navbar() {
 
   return (
     <Flex padding={3}>
-      <Flex alignItems="center">
-        <Link to="/">
+      <Link to="/">
+        <Flex alignItems="center">
           <Image src="logo.png" height="30px" />
-        </Link>
-        <Heading size="lg" marginLeft={2}>
-          Who Sings
-        </Heading>
-      </Flex>
+
+          <Heading size="lg" marginLeft={2}>
+            Who Sings
+          </Heading>
+        </Flex>
+      </Link>
+
       <Spacer />
       <ButtonGroup>
         {routeButtons.map(({ label, icon, ...rest }) => (
