@@ -9,9 +9,9 @@ interface ResultProps {
 
 function Result({ points, onPlayAgain }: ResultProps) {
   function getResultLabel() {
-    if (points === 0) {
+    if (points < 2) {
       return "So baaaad";
-    } else if (points < 3) {
+    } else if (points < 4) {
       return "Nice but you can do better";
     } else return <>You rock 🤘</>;
   }

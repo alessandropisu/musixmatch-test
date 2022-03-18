@@ -16,12 +16,12 @@ function Login() {
       <Box
         width="400px"
         marginX="auto"
-        paddingX={4}
-        paddingY={3}
+        paddingX={5}
+        paddingY={4}
         shadow="2xl"
         rounded="xl"
       >
-        <Flex justifyContent="center" alignItems="center">
+        <Flex justifyContent="center" alignItems="center" marginBottom={8}>
           <Image src="logo.png" height="80px" />
           <Heading marginLeft={4} size="2xl">
             Who Sings
@@ -33,7 +33,7 @@ function Login() {
           onChange={(e) => setUsername(e.target.value)}
           variant="filled"
           placeholder="Username"
-          marginY={6}
+          marginBottom={4}
         />
 
         <Button isFullWidth isDisabled={!username.trim()} onClick={handleLogin}>
