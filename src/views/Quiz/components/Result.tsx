@@ -20,7 +20,7 @@ function Result({ points, onPlayAgain }: ResultProps) {
     <ScaleFade initialScale={0.9} in>
       <Title>Quiz result 🥁</Title>
 
-      <Box padding={8} rounded="xl" shadow="xl" textAlign="center">
+      <Box padding={8} rounded="xl" shadow="2xl" textAlign="center">
         <Text fontSize="3xl" fontWeight={500}>
           {getResultLabel()}
         </Text>

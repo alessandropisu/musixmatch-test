@@ -22,7 +22,7 @@ function Leaderboard() {
     <>
       <Title>Leaderboard 🏅</Title>
 
-      <Box shadow="xl" rounded="xl" padding={5}>
+      <Box shadow="2xl" rounded="xl" padding={5}>
         <Table>
           <Thead>
             <Tr>

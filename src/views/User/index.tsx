@@ -30,8 +30,8 @@ function User() {
 
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
-            spacing={{ base: 5, lg: 8 }}
-            mb={5}
+            spacing={{ base: 5, md: 10 }}
+            mb={{ base: 5, md: 10 }}
           >
             <Card
               title="Game played"
@@ -52,7 +52,7 @@ function User() {
             value={getLastScores()}
             bgGradient={colors.brandGradient}
             bgClip="text"
-            shadow="xl"
+            shadow="2xl"
           />
         </>
       )}

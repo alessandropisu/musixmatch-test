@@ -7,7 +7,7 @@ interface TimerProps {
   onTimeOver: () => void;
 }
 
-const seconds = 5;
+const seconds = 10;
 
 function Timer({ trackIndex, onTimeOver }: TimerProps) {
   const { time, start, reset } = useTimer({

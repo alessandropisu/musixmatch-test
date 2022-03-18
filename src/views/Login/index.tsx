@@ -18,7 +18,7 @@ function Login() {
         mx="auto"
         paddingX={4}
         paddingY={3}
-        shadow="xl"
+        shadow="2xl"
         rounded="xl"
       >
         <Flex justifyContent="center" alignItems="center">

@@ -11,7 +11,7 @@ function Card({ title, value, ...rest }: CardProps) {
     <Stat
       paddingX={{ base: 4, md: 8 }}
       paddingY={5}
-      shadow="xl"
+      shadow="2xl"
       border="3px solid"
       rounded="xl"
       textAlign="center"
