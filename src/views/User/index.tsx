@@ -35,7 +35,7 @@ function User() {
 
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
-            spacing={{ base: 5, md: 10 }}
+            spacing={{ base: 5, md: 9 }}
             marginBottom={{ base: 5, md: 10 }}
           >
             <Card
