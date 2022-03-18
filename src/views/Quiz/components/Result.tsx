@@ -10,7 +10,7 @@ interface ResultProps {
 function Result({ points, onPlayAgain }: ResultProps) {
   function getResultLabel() {
     if (points === 0) {
-      return "Soooo bad";
+      return "So baaaad";
     } else if (points < 3) {
       return "Nice but you can do better";
     } else return <>You rock 🤘</>;
@@ -21,11 +21,9 @@ function Result({ points, onPlayAgain }: ResultProps) {
       <Title>Quiz result 🥁</Title>
 
       <Box padding={8} rounded="xl" shadow="2xl" textAlign="center">
-        <Text fontSize="3xl" fontWeight={500}>
-          {getResultLabel()}
-        </Text>
+        <Text fontSize="4xl">{getResultLabel()}</Text>
 
-        <Text fontSize="2xl" fontWeight={700}>
+        <Text fontSize="3xl" fontWeight={700} marginY={2}>
           {points}/{TRACKS_NUMBER}
         </Text>
 

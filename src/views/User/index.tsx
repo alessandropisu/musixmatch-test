@@ -1,6 +1,7 @@
-import { SimpleGrid, useTheme } from "@chakra-ui/react";
+import { SimpleGrid, Text, useTheme } from "@chakra-ui/react";
 import Card from "common/Card";
 import Title from "common/Title";
+import { TRACKS_NUMBER } from "../../constants";
 import useStore from "store";
 import { userInfoSelector } from "store/selectors";
 
@@ -18,7 +19,11 @@ function User() {
       // Check if scores count is greater than 3 to avoid allocation of extra 0 values
       const scoresCount = user.scores.length >= 3 ? 3 : user.scores.length;
 
-      return user.scores.slice(0, scoresCount).toString();
+      return user.scores.slice(0, scoresCount).map((score, i) => (
+        <Text key={i}>
+          {score}/{TRACKS_NUMBER} points
+        </Text>
+      ));
     }
   }
 
