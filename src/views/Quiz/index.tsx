@@ -1,15 +1,15 @@
-import { Flex, Progress } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import Lyric from "./components/Lyric";
 import sample from "lodash.samplesize";
 import shuffle from "lodash.shuffle";
 import Loader from "common/Loader";
 import { getTracksApi, getTrackSnippetApi } from "services/track";
-import { useTimer } from "use-timer";
 import Result from "./components/Result";
 import useStore from "store";
 import Artists from "./components/Artists";
 import { TRACKS_NUMBER } from "../../constants";
+import Timer from "./components/Timer";
 
 interface Track {
   artist: string;
@@ -24,25 +24,8 @@ function Quiz() {
 
   const addScore = useStore((state) => state.addScore);
 
-  const { time, start, reset } = useTimer({
-    initialTime: 5,
-    endTime: 0,
-    timerType: "DECREMENTAL",
-    onTimeOver: () => {
-      if (isGameCompleted) return;
-
-      setTrackIndex(trackIndex + 1);
-      restartTimer();
-    },
-  });
-
   const currentTrack = tracks[trackIndex];
   const isGameCompleted = trackIndex === TRACKS_NUMBER;
-
-  function restartTimer() {
-    reset();
-    start();
-  }
 
   const artists = useMemo(() => {
     // True only during quiz loading (loader spinner is displayed)
@@ -90,8 +73,6 @@ function Quiz() {
 
       setTracks(tracks);
       setLoading(false);
-
-      start();
     });
   }, []);
 
@@ -104,15 +85,11 @@ function Quiz() {
   function handleArtistClick(artist: string) {
     setPoints(artist === currentTrack.artist ? points + 1 : points);
     setTrackIndex(trackIndex + 1);
-
-    restartTimer();
   }
 
   function handlePlayAgain() {
     setTrackIndex(0);
     setPoints(0);
-
-    restartTimer();
   }
 
   return (
@@ -126,12 +103,9 @@ function Quiz() {
           ) : (
             <>
               <Lyric value={currentTrack.snippet} />
-              <Progress
-                size="sm"
-                min={0}
-                max={5}
-                value={time}
-                colorScheme="cyan"
+              <Timer
+                onTimeOver={() => setTrackIndex(trackIndex + 1)}
+                trackIndex={trackIndex}
               />
               <Artists artists={artists} onArtistClick={handleArtistClick} />
             </>
