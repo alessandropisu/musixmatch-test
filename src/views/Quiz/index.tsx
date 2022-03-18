@@ -30,19 +30,19 @@ function Quiz() {
     timerType: "DECREMENTAL",
     onTimeOver: () => {
       if (isGameCompleted) return;
-      setTrackIndex(trackIndex + 1);
 
+      setTrackIndex(trackIndex + 1);
       restartTimer();
     },
   });
+
+  const currentTrack = tracks[trackIndex];
+  const isGameCompleted = trackIndex === TRACKS_NUMBER;
 
   function restartTimer() {
     reset();
     start();
   }
-
-  const currentTrack = tracks[trackIndex];
-  const isGameCompleted = trackIndex === TRACKS_NUMBER;
 
   const artists = useMemo(() => {
     // True only during quiz loading (loader spinner is displayed)
@@ -65,7 +65,7 @@ function Quiz() {
 
     // Shuffling the order of artists to prevent have the right artist always at the same buttons position
     return shuffle(payload);
-  }, [tracks, currentTrack]);
+  }, [currentTrack]);
 
   useEffect(() => {
     getTracksApi(TRACKS_NUMBER).then(async ({ data }) => {
@@ -97,7 +97,6 @@ function Quiz() {
 
   useEffect(() => {
     if (isGameCompleted) {
-      // Save quiz score to store and localStorage
       addScore(points);
     }
   }, [isGameCompleted, points]);

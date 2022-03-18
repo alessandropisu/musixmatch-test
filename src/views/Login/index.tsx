@@ -8,7 +8,7 @@ function Login() {
   const login = useStore((store) => store.login);
 
   function handleLogin() {
-    login(username);
+    login(username.trim());
   }
 
   return (
@@ -36,7 +36,7 @@ function Login() {
           marginY={6}
         />
 
-        <Button isFullWidth isDisabled={!username} onClick={handleLogin}>
+        <Button isFullWidth isDisabled={!username.trim()} onClick={handleLogin}>
           Enter
         </Button>
       </Box>
