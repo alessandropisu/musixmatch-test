@@ -39,7 +39,7 @@ function App() {
               <BrowserRouter>
                 <Navbar />
                 <Container
-                  mt={{ base: "90px", md: "140px" }}
+                  marginTop={{ base: "90px", md: "140px" }}
                   maxW="container.lg"
                 >
                   <Routes>
