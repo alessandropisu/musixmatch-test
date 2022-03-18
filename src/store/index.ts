@@ -20,8 +20,6 @@ const useStore = create<StoreState>((set, get) => ({
   },
   login: (username) => {
     const users = get().users;
-
-    // Check if the user has played at least once
     const hasUserAlreadyPlayed = users.find((user) => user.name === username);
 
     set((state) => ({ ...state, userLogged: username }));

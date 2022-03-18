@@ -37,7 +37,7 @@ function Quiz() {
 
     payload = [
       ...payload,
-      // Retrieve two random artists excluding the real artist of the track
+      // Retrieve two random artists excluding the real track artist
       ...sample(
         tracks
           .filter((track) => track.artist !== currentTrack.artist)
@@ -46,7 +46,7 @@ function Quiz() {
       ),
     ];
 
-    // Shuffling the order of artists to prevent have the right artist always at the same buttons position
+    // Shuffling the order of artists to avoid having the right artist always in the same buttons position
     return shuffle(payload);
   }, [currentTrack]);
 
@@ -60,7 +60,7 @@ function Quiz() {
         const trackId = trackList[i].track.track_id;
         const trackArtist = trackList[i].track.artist_name;
 
-        // Retrieve snippet for every track
+        // Retrieve snippet for each track
         const { data } = await getTrackSnippetApi(trackId);
 
         const snippet = data.message.body.snippet.snippet_body;
