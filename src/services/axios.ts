@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL =
-  "https://corsanywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1";
+  "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1";
 
 // Set base URL prefix for all HTTP requests
 const axiosInstance = axios.create({
